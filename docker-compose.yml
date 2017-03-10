@@ -1,0 +1,26 @@
+version: '2'
+services:
+  webserver:
+      image: daocloud.io/iamfaith/java8freetype
+      volumes:
+        - g:/WPS_document/wow/wow/wowServer/deploy:/data/wowServer
+      working_dir: /data/wowServer/bin
+      environment:
+        - WOW_HOME=/data/wowServer
+      ports:
+        - "8013:8013"
+        - "2345:2345"
+      links:
+        - db
+      command: ./wowServer.sh run
+  nginx:
+      image: nginx
+      volumes:
+        - g:/WPS_document/wow/wow/wowServer/deploy:/usr/share/nginx/html
+      ports:
+        - "80:80"
+
+  db:
+      image: redis
+      ports:
+        - "6379:6379"
