@@ -1,0 +1,1 @@
+docker run -d -p 127.0.0.1:4000:3306 --name live4runmysql -v /data/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD="lijin716" mysql:latest
